@@ -142,6 +142,105 @@ yarn start
 * Go the browser and enter http://localhost:3000
 * To test the graphql query use:- http://localhost:3000/graphql
 
+
+### Different Query with graphql
+
+* String and Int
+```
+type Query{
+    name: String!
+    age: Int!
+}
+```
+* Resolver code for String and Int
+```
+@Query(()=>String)
+    async name(){
+        return "hello";
+    }
+@Query(()=>Intl)
+async age(){
+ return 25;
+ }  
+ ```
+ 
+ * Code for Querying GraphQL  http:locahost:3000/graphql
+ ```
+ {
+   name
+   age
+  }
+ ```
+ 
+ ### Creating your own type
+ 
+ * Creating type User in graphQlL file
+ ```
+type User{
+    id:Int!
+    name:String!
+    age:Int!
+
+}
+
+type Query{
+ user(id:Int!): User
+ }
+ ```
+ 
+ * Resolver
+ ```
+   @Query()
+    async user(@Args('id') id:number){
+        
+        return ({id:2,name:'xyz',age:26});
+    }
+  ```
+  
+  * Query for graphQL
+  ```
+  {
+   user(id:2){
+      id
+      name
+      age
+    }
+   }
+   ```
+   
+### Storing data in Array:
+ 
+* GraphQL code
+```
+type Query{
+allUser: [User!]!
+}
+```
+* Resolver Code
+```
+ @Query()
+    async allUser(){
+        let user_arr:any[] = [{id:1,name:'Sumit',age:25},{id:2,name:'Sanjana',age:26}]
+        return (user_arr);
+    }
+```
+
+* Querying Graphql
+```
+{
+allUser{
+id
+name
+age
+}
+}
+```
+    
+ 
+    
+
+
+
           
  
  
