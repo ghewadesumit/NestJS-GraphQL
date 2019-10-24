@@ -236,7 +236,43 @@ age
 }
 ```
     
+ ## To debug the Server side of NestJS and GraphQL
  
+ * Include the following code inside the launch.json file.
+ 
+```
+{
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nest Framework",
+      "args": ["${workspaceFolder}<path of source file>"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}<path of source folder>",
+      "protocol": "inspector"
+    }
+```
+
+for Example:
+
+Source file's path is /packages/core/src/service.ts
+Source folder path  is /packages/core
+
+```
+{
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nest Framework",
+      "args": ["${workspaceFolder}/packages/core/src/service.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}/packages/core",
+      "protocol": "inspector"
+    }
+```
+and then set breakpoints and close if the server is already started.
+and then go to debugger select the "Debug Nest Framework".
+
     
 
 
